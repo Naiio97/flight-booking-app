@@ -1,0 +1,25 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.search-box {
+    display: flex;
+    height: 100%;
+    width: 750px;
+    border: 1px solid rgba(0, 0, 0, 0.23);;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+i {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+}
+
+.input {
+    margin-right: 20px;
+}
+
