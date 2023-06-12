@@ -1,0 +1,6 @@
+.flight-details{
+    display: flex;
+    gap: 30px;
+    position: relative;
+    font-size: 18px;
+}

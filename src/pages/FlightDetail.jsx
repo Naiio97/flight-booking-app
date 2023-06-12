@@ -3,8 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import FlightIcon from '@mui/icons-material/Flight';
-import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import FlightInfo from '../components/FlightInfo';
 
 const FlightDetail = () => {
   return (
@@ -13,10 +12,9 @@ const FlightDetail = () => {
         <div className="header">
           <div style={{ display: 'flex' }}>
             <h1>Your trip to Paris</h1>
-            <FlightIcon style={{ marginTop: 8 }} />
           </div>
           <div>
-            <p>
+            <p style={{ fontSize: 18 }}>
               Total price
               <br />
               <b>Kč 2000</b>
@@ -24,18 +22,7 @@ const FlightDetail = () => {
           </div>
         </div>
         <div style={{ display: 'flex', position: 'relative', gap: 30 }}>
-          <div className="detail-departure">
-            <p>27.9.</p>
-            <p>Praha</p>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <p>2h</p>
-            <TrendingFlatIcon className="detail-arrow" />
-          </div>
-          <div className="arive-departure">
-            <p>27.9.</p>
-            <p>Paris</p>
-          </div>
+          <FlightInfo />
         </div>
       </div>
       <div className="passanger-detail">
