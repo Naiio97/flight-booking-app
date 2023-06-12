@@ -1,0 +1,47 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.flight-detail {
+  width: 500px;
+  height: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+}
+
+.detail-arrow {
+  position: absolute;
+  top: 16px;
+  left: 77px;
+}
+
+.passanger-detail {
+  margin-top: 10px;
+  height: 220px;
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-reservation {
+  width: 105%;
+  margin-top: 20px;
+  left: -12px;
+}

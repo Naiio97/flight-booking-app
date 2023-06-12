@@ -1,0 +1,57 @@
+.flight-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flight{
+    display: flex;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.23);;
+    border-radius: 5px;
+    width: 770px;
+    
+}
+
+.flight-info {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    padding: 15px 0 15px 35px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.arline {
+    position: absolute;
+    top: 9px;
+    left: 15px;
+    width: 3em !important;
+    height: 3em !important;
+}
+
+.arrow {
+    position: absolute;
+    bottom: 23px;
+    left: 307px;
+}
+
+p{
+    margin: 0;
+}
+
+
+.flight-price {
+    width: 20%; 
+    border-left: 1px solid rgba(0, 0, 0, 0.23);;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.price {
+    margin-bottom: 5px;
+}
