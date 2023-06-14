@@ -1,37 +1,38 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import FlightInfo from '../components/FlightInfo';
 import AirlinesIcon from '@mui/icons-material/Airlines';
 import '../styles/flightContainer.css';
-import Button from '@mui/material/Button';
-
 
 const FlightContainer = () => {
-     const navigate = useNavigate();
-
-const hendleDetailFlight = () => {
-    console.log('aaa');
-  navigate('/flightDetail');
-};
+  const searchedFlights = useSelector((state) => state.searchedFlights);
  
+  
   return (
     <>
       <div className="flight-container">
-        <div className="flight">
-          <div className="flight-info">
-            <AirlinesIcon className="arline" />
-            <FlightInfo />
-          </div>
-          <div className="flight-price">
-            <p className="price">2000 Kč</p>
-            <Button
-              onClick={() => hendleDetailFlight()}
-              className="btn-choose"
-              variant="contained"
-            >
-              Vybrat
-            </Button>
-          </div>
-        </div>
+        {searchedFlights &&
+          searchedFlights.map((flight) => (
+            <div key={flight.id} className="flight">
+              <div className="flight-info">
+                <AirlinesIcon className="arline" />
+                <FlightInfo
+                  id={flight.id}
+                  to={flight.to}
+                  from={flight.from}
+                  duration={flight.duration}
+                  departure={flight.departure}
+                  arrival={flight.arrival}
+                />
+              </div>
+              <div className="flight-price">
+                <p className="price">2000 Kč</p>
+                <Link className="btn-choose" to={`/flightDetail/${flight.id}`}>
+                  Vybrat
+                </Link>
+              </div>
+            </div>
+          ))}
       </div>
     </>
   );

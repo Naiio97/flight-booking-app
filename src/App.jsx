@@ -1,20 +1,21 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import SearchPage from '../src/pages/SearchPage';
-import FlightDetail from '../src/pages/FlightDetail';
+import FlightReservation from '../src/pages/FlightReservation';
 import BookingSummary from '../src/pages/BookingSummary';
+
 import '../src/styles/App.css'
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SearchPage />} />
-          <Route path="/flightDetail" element={<FlightDetail />} />
-          <Route path="/bookingSummary" element={<BookingSummary />} />
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SearchPage />} />
+            <Route path="/flightReservation/:id" element={<FlightReservation />} />
+            <Route path="/bookingSummary/:id" element={<BookingSummary />} />
+          </Routes>
+        </BrowserRouter>
     </>
   );
 };

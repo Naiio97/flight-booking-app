@@ -1,6 +1,23 @@
-.flight-details{
-    display: flex;
-    gap: 30px;
-    position: relative;
-    font-size: 18px;
+.flight-details {
+  display: flex;
+  position: relative;
+  font-size: 18px;
+  width: 400px;
+}
+
+.detail-duration {
+  display: flex;
+  justify-content: center;
+}
+
+.detail-arrow {
+  position: absolute;
+  top: 20px;
+  left: 171px;
+}
+
+.detail-arrive {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
