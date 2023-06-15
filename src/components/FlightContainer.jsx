@@ -27,7 +27,7 @@ const FlightContainer = () => {
               </div>
               <div className="flight-price">
                 <p className="price">2000 Kč</p>
-                <Link className="btn-choose" to={`/flightDetail/${flight.id}`}>
+                <Link className="btn btn-choose" to={`/flightReservation/${flight.id}`}>
                   Vybrat
                 </Link>
               </div>

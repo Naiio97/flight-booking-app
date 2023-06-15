@@ -28,15 +28,24 @@ h1 {
 
 .passanger-detail {
   margin-top: 10px;
-  height: 220px;
   width: 500px;
   border: 1px solid rgba(0, 0, 0, 0.23);;
   padding: 10px;
   border-radius: 5px;
 }
 
+.header-form {
+  display: flex;
+  margin: 0 14px 0 8px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+}
+
 .btn-reservation {
-  width: 105%;
-  margin-top: 20px !important;
-  left: -12px;
+  width: 96%;
+  left: 7px;
 }

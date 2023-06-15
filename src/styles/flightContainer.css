@@ -10,7 +10,7 @@
     margin-top: 10px;
     border: 1px solid rgba(0, 0, 0, 0.23);;
     border-radius: 5px;
-    width: 770px;
+    width: 875px;
     
 }
 
@@ -54,4 +54,9 @@ p{
 
 .price {
     margin-bottom: 5px;
+}
+
+.btn-choose {
+    padding: 5px 15px;
+    text-decoration: none;
 }

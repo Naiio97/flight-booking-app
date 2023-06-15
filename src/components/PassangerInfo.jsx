@@ -18,7 +18,7 @@ const PassengerInfo = () => {
           </Grid>
           <Grid item xs={4}>
             <i>Příjmení</i>
-            <p>{passangers.sureName}</p>
+            <p>{passangers.lastName}</p>
           </Grid>
           <Grid item xs={4}>
             <i>Pohlaví</i>

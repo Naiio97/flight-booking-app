@@ -1,3 +1,16 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.btn {
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background-color: #1764c0;
+    cursor: pointer;
+}
