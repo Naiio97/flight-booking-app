@@ -10,6 +10,7 @@ import {
   setSearchTo,
   setSearchDate,
   setSearchPassengers,
+  setMessage,
 } from '../redux/actions';
 
 import '../styles/SearchWindow.css';
@@ -28,12 +29,13 @@ const SearchWindow = () => {
   } = useForm();
 
   const searchFlight = () => {
-    //e.preventDefault();
-
     const formattedDate = moment(searchDate, 'D.M.YYYY').format('YYYY-MM-DD');
 
     let searchedFlight = flights.filter((flight) => {
-     
+      if (flight.length > 0) {
+        dispatch(setSearchedFlights(searchedFlight));
+      }
+
       const availableSeats = flight.seats.filter(
         (seat) => seat.available
       ).length;
@@ -56,7 +58,7 @@ const SearchWindow = () => {
           flight.from.includes(searchFrom) &&
           availableSeats >= searchPassengers &&
           flight.departure.includes(formattedDate)
-        ); 
+        );
       }
 
       if (searchTo && searchPassengers && searchDate) {
@@ -65,6 +67,10 @@ const SearchWindow = () => {
           availableSeats >= searchPassengers &&
           flight.departure.includes(formattedDate)
         );
+      }
+
+      if (searchFrom && searchTo) {
+        return flight.from.includes(searchFrom) && flight.to.includes(searchTo);
       }
 
       if (searchFrom && searchPassengers) {
@@ -109,11 +115,17 @@ const SearchWindow = () => {
         return flight.departure.includes(formattedDate);
       }
 
-      
+      dispatch(setMessage('Nemůžeme nic najít'));
       return false;
     });
 
-    dispatch(setSearchedFlights(searchedFlight));
+    if (!searchedFlight.length > 0) {
+      dispatch(setMessage('Nenalezen žádný let.'));
+      dispatch(setSearchedFlights([]));
+    } else {
+      dispatch(setSearchedFlights(searchedFlight));
+      dispatch(setMessage(''));
+    }
   };
 
   return (
@@ -138,9 +150,9 @@ const SearchWindow = () => {
           id="to-input"
           name="to"
           label="Kam"
-          {...register('to', { required: 'Zadejte kam chcete letět.' })}
-          error={Boolean(errors.from)}
-          helperText={errors.from?.message}
+          // {...register('to', { required: 'Zadejte kam chcete letět.' })}
+          // error={Boolean(errors.from)}
+          // helperText={errors.from?.message}
           onChange={(e) => {
             dispatch(
               setSearchTo(e.target.value !== '' ? e.target.value : false)
