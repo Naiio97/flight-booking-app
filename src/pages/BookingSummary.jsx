@@ -1,15 +1,14 @@
-import FlightInfo from '../components/FlightInfo';
-import PassangerInfo from '../components/PassangerInfo';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import FlightInfo from '../components/FlightInfo';
+import PassangerInfo from '../components/PassangerInfo';
+
 import '../styles/bookingSummary.css';
 
 const BookingSummary = () => {
-const { id } = useParams();
-const parsedId = parseInt(id);
-const flights = useSelector((state) => state.flights);  
-
-
+  const { id } = useParams();
+  const parsedId = parseInt(id);
+  const flights = useSelector((state) => state.flights);
 
   return (
     <div className="summary-container">

@@ -33,18 +33,30 @@ export const setSearchDate = (bool) => {
   };
 };
 
-export const setSearchPassengers = (passengers = 1) => {
+export const setSearchCountPassengers = (passengers = 1) => {
   return {
-    type: 'SETSEARCHPASSENGERS',
+    type: 'SETSEARCHCOUNTPASSENGERS',
     payload: passengers,
   };
 };
 
-export const setPassengers = (passengerData) => {
+export const setPassengers = (passengers) => {
   return {
     type: 'SETPASSENGERS',
-    payload: passengerData,
+    payload: passengers,
   };
 };
 
+export const addPassenger = (passenger) => {
+  return {
+    type: 'ADDPASSENGER',
+    payload: passenger,
+  };
+};
 
+export const setMessage = (arr) => {
+  return {
+    type: 'SETMESSAGE',
+    payload: arr,
+  };
+};

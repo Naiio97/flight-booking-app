@@ -1,8 +1,7 @@
 import FlightContainer from '../components/FlightContainer';
 import SearchWindow from '../components/SearchWindow';
 
-
- const SearchPage = () => {
+const SearchPage = () => {
   return (
     <>
       <SearchWindow />
@@ -12,4 +11,3 @@ import SearchWindow from '../components/SearchWindow';
 };
 
 export default SearchPage;
-

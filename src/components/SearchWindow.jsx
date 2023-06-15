@@ -1,15 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import moment from 'moment';
+
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import moment from 'moment';
-import { useForm } from 'react-hook-form';
+
 import {
   setSearchedFlights,
   setSearchFrom,
   setSearchTo,
   setSearchDate,
-  setSearchPassengers,
+  setSearchCountPassengers,
   setMessage,
 } from '../redux/actions';
 
@@ -21,7 +23,9 @@ const SearchWindow = () => {
   const searchFrom = useSelector((state) => state.searchFrom);
   const searchTo = useSelector((state) => state.searchTo);
   const searchDate = useSelector((state) => state.searchDate);
-  const searchPassengers = useSelector((state) => state.searchPassengers);
+  const searchCountPassengers = useSelector(
+    (state) => state.searchCountPassengers
+  );
   const {
     register,
     handleSubmit,
@@ -40,31 +44,31 @@ const SearchWindow = () => {
         (seat) => seat.available
       ).length;
 
-      if (!searchFrom && !searchTo && !searchDate && !searchPassengers) {
+      if (!searchFrom && !searchTo && !searchDate && !searchCountPassengers) {
         return false;
       }
 
-      if (searchFrom && searchTo && searchDate && searchPassengers) {
+      if (searchFrom && searchTo && searchDate && searchCountPassengers) {
         return (
           flight.from.includes(searchFrom) &&
           flight.to.includes(searchTo) &&
           flight.departure.includes(formattedDate) &&
-          availableSeats >= searchPassengers
+          availableSeats >= searchCountPassengers
         );
       }
 
-      if (searchFrom && searchPassengers && searchDate) {
+      if (searchFrom && searchCountPassengers && searchDate) {
         return (
           flight.from.includes(searchFrom) &&
-          availableSeats >= searchPassengers &&
+          availableSeats >= searchCountPassengers &&
           flight.departure.includes(formattedDate)
         );
       }
 
-      if (searchTo && searchPassengers && searchDate) {
+      if (searchTo && searchCountPassengers && searchDate) {
         return (
           flight.to.includes(searchTo) &&
-          availableSeats >= searchPassengers &&
+          availableSeats >= searchCountPassengers &&
           flight.departure.includes(formattedDate)
         );
       }
@@ -73,15 +77,17 @@ const SearchWindow = () => {
         return flight.from.includes(searchFrom) && flight.to.includes(searchTo);
       }
 
-      if (searchFrom && searchPassengers) {
+      if (searchFrom && searchCountPassengers) {
         return (
-          flight.from.includes(searchFrom) && availableSeats >= searchPassengers
+          flight.from.includes(searchFrom) &&
+          availableSeats >= searchCountPassengers
         );
       }
 
-      if (searchTo && searchPassengers) {
+      if (searchTo && searchCountPassengers) {
         return (
-          flight.to.includes(searchTo) && availableSeats >= searchPassengers
+          flight.to.includes(searchTo) &&
+          availableSeats >= searchCountPassengers
         );
       }
 
@@ -186,7 +192,7 @@ const SearchWindow = () => {
           label="Cestující"
           defaultValue={1}
           onChange={(e) => {
-            dispatch(setSearchPassengers(e.target.value));
+            dispatch(setSearchCountPassengers(e.target.value));
           }}
         >
           <MenuItem value={1}>1</MenuItem>

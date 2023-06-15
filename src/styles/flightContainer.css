@@ -5,6 +5,15 @@
     flex-direction: column;
 }
 
+.not-found {
+  width: 853px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 30px auto;
+}
+
 .flight{
     display: flex;
     margin-top: 10px;

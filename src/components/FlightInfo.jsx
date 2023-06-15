@@ -1,15 +1,16 @@
-import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import moment from 'moment';
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+
 import '../styles/flightInfo.css';
 
 const FlightInfo = ({ id, to, from, departure, arrival, duration }) => {
-const dateDeparture = moment(departure).format('DD.MM.YYYY');
-const timeDeparture = moment(departure).format('HH:MM');
-const dateArrival = moment(arrival).format('DD.MM.YYYY');
-const timeArrival = moment(arrival).format('HH:MM');
+  const dateDeparture = moment(departure).format('DD.MM.YYYY');
+  const timeDeparture = moment(departure).format('HH:MM');
+  const dateArrival = moment(arrival).format('DD.MM.YYYY');
+  const timeArrival = moment(arrival).format('HH:MM');
 
   return (
     <div>
@@ -29,7 +30,7 @@ const timeArrival = moment(arrival).format('HH:MM');
               </div>
             </Grid>
             <Grid item xs={1}>
-              <div className='detail-duration' style={{ display: 'flex' }}>
+              <div className="detail-duration" style={{ display: 'flex' }}>
                 <p>{duration}</p>
                 <TrendingFlatIcon className="detail-arrow" />
               </div>
@@ -48,7 +49,6 @@ const timeArrival = moment(arrival).format('HH:MM');
     </div>
   );
 };
-
 
 FlightInfo.propTypes = {
   id: PropTypes.number.isRequired,

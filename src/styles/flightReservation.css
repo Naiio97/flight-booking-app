@@ -9,7 +9,7 @@
 .flight-detail {
   width: 500px;
   height: 100px;
-  border: 1px solid rgba(0, 0, 0, 0.23);;
+  border: 1px solid rgba(0, 0, 0, 0.23);
   border-radius: 10px;
   padding: 10px;
   font-size: 18px;
@@ -27,15 +27,18 @@ h1 {
 }
 
 .passanger-detail {
+  position: relative;
   margin-top: 10px;
   width: 500px;
-  border: 1px solid rgba(0, 0, 0, 0.23);;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  ;
   padding: 10px;
   border-radius: 5px;
 }
 
 .header-form {
-  display: flex;
+  position: absolute;
+  right: 10px;
   margin: 0 14px 0 8px;
   justify-content: space-between;
   margin-bottom: 10px;

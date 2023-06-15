@@ -1,29 +1,58 @@
-import '../../src/styles/flightReservation.css';
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPassengers } from '../redux/actions';
+import { useForm } from 'react-hook-form';
+import FlightInfo from '../components/FlightInfo';
+
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import FlightInfo from '../components/FlightInfo';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setPassengers } from '../redux/actions';
-import PropTypes from 'prop-types';
+
+import '../../src/styles/flightReservation.css';
 
 const FlightReservation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
   const parsedId = parseInt(id);
-
   const flights = useSelector((state) => state.flights);
   const seats = flights[id - 1].seats;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (field, value) => {
-    dispatch(setPassengers({ [field]: value }));
+  const [passengerList, setPassengersList] = useState([
+    { id: 1, firstName: '', lastName: '', email: '', gender: '', seat: '' },
+  ]);
+
+  const handleChange = (id, field, value) => {
+    const updatedList = passengerList.map((passenger) => {
+      if (passenger.id === id) {
+        return { ...passenger, [field]: value };
+      }
+      return passenger;
+    });
+    setPassengersList(updatedList);
   };
 
-  const confirmReservation = (e) => {
-    e.preventDefault();
+  const handleAddPassenger = () => {
+    const newPassengerId = passengerList.length + 1;
+    const newPassenger = {
+      id: newPassengerId,
+      firstName: '',
+      lastName: '',
+      email: '',
+      gender: '',
+      seat: '',
+    };
+    setPassengersList([...passengerList, newPassenger]);
+  };
+  const confirmReservation = () => {
+    dispatch(setPassengers(passengerList));
     navigate(`/bookingSummary/${id}`);
   };
 
@@ -55,8 +84,11 @@ const FlightReservation = () => {
       </div>
       <div className="passanger-detail">
         <div className="header-form">
-          <h2>Passanger</h2>
-          <Button className="btn-add-person" variant="contained">
+          <Button
+            className="btn-add-person"
+            variant="contained"
+            onClick={handleAddPassenger}
+          >
             + Přida další osobu
           </Button>
         </div>
@@ -65,53 +97,89 @@ const FlightReservation = () => {
           sx={{
             '& .MuiTextField-root': { m: 1, width: '26ch' },
           }}
-          onSubmit={confirmReservation}
+          onSubmit={handleSubmit(confirmReservation)}
         >
-          <div>
-            <TextField
-              className="input"
-              id="first-name"
-              label="Jmeno"
-              onChange={(e) => handleChange('firstName', e.target.value)}
-            />
-            <TextField
-              className="input"
-              id="sure-name"
-              label="Příjmení"
-              onChange={(e) => handleChange('lastName', e.target.value)}
-            />
-            <TextField
-              className="input"
-              id="email"
-              label="Email"
-              onChange={(e) => handleChange('email', e.target.value)}
-            />
-            <TextField
-              id="gender"
-              select
-              label="Pohlaví"
-              defaultValue=""
-              onChange={(e) => handleChange('gender', e.target.value)}
-            >
-              <MenuItem value={'Muž'}>Můž</MenuItem>
-              <MenuItem value={'Žena'}>Žena</MenuItem>
-            </TextField>
-            <TextField
-              id="seat"
-              select
-              label="Sedadlo"
-              defaultValue=""
-              onChange={(e) => handleChange('seat', e.target.value)}
-            >
-              {seats.map((seat) =>
-                seat.available ? (
-                  <MenuItem key={seat.id} value={seat.number}>
-                    {seat.number}
-                  </MenuItem>
-                ) : null
-              )}
-            </TextField>
-          </div>
+          {passengerList.map((passenger, index) => (
+            <div style={{ marginBottom: 10 }} key={index}>
+              <h2 style={{ marginLeft: 7, marginBottom: 20 }}>
+                Passanger {passenger.id}
+              </h2>
+              <TextField
+                id={`first-name-${passenger.id}`}
+                name={`firstName-${passenger.id}`}
+                label="Jmeno"
+                {...register(`firstName-${passenger.id}`, {
+                  required: 'Toto pole je povinné.',
+                })}
+                error={Boolean(errors[`firstName-${passenger.id}`])}
+                helperText={errors[`firstName-${passenger.id}`]?.message}
+                onChange={(e) =>
+                  handleChange(passenger.id, 'firstName', e.target.value)
+                }
+              />
+              <TextField
+                id={`last-name-${passenger.id}`}
+                name={`lastName-${passenger.id}`}
+                label="Příjmení"
+                {...register(`lastName-${passenger.id}`, {
+                  required: 'Toto pole je povinné.',
+                })}
+                error={Boolean(errors[`lastName-${passenger.id}`])}
+                helperText={errors[`lastName-${passenger.id}`]?.message}
+                onChange={(e) =>
+                  handleChange(passenger.id, 'lastName', e.target.value)
+                }
+              />
+              <TextField
+                id={`email-${passenger.id}`}
+                name={`email-${passenger.id}`}
+                label="Email"
+                {...register(`email-${passenger.id}`, {
+                  required: 'Toto pole je povinné.',
+                })}
+                error={Boolean(errors[`email-${passenger.id}`])}
+                helperText={errors[`email-${passenger.id}`]?.message}
+                onChange={(e) =>
+                  handleChange(passenger.id, 'email', e.target.value)
+                }
+              />
+              <TextField
+                id={`gender-${passenger.id}`}
+                select
+                label="Pohlaví"
+                defaultValue=""
+                onChange={(e) =>
+                  handleChange(passenger.id, 'gender', e.target.value)
+                }
+              >
+                <MenuItem value={'Muž'}>Můž</MenuItem>
+                <MenuItem value={'Žena'}>Žena</MenuItem>
+              </TextField>
+              <TextField
+                id={`seat-${passenger.id}`}
+                select
+                label="Sedadlo"
+                defaultValue=""
+                {...register(`seat-${passenger.id}`, {
+                  required: 'Toto pole je povinné.',
+                })}
+                error={Boolean(errors[`seat-${passenger.id}`])}
+                helperText={errors[`seat-${passenger.id}`]?.message}
+                onChange={(e) =>
+                  handleChange(passenger.id, 'seat', e.target.value)
+                }
+              >
+                {seats.map((seat) =>
+                  seat.available ? (
+                    <MenuItem key={seat.id} value={seat.number}>
+                      {seat.number}
+                    </MenuItem>
+                  ) : null
+                )}
+              </TextField>
+            </div>
+          ))}
+
           <Button type="submit" className="btn-reservation" variant="contained">
             Rezervovat
           </Button>
@@ -119,15 +187,6 @@ const FlightReservation = () => {
       </div>
     </div>
   );
-};
-
-FlightInfo.propTypes = {
-  id: PropTypes.number.isRequired,
-  to: PropTypes.string.isRequired,
-  from: PropTypes.string.isRequired,
-  departure: PropTypes.string.isRequired,
-  arrival: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
 };
 
 export default FlightReservation;
