@@ -26,10 +26,25 @@ export const setSearchTo = (bool) => {
   };
 };
 
+export const setSearchDate = (bool) => {
+  return {
+    type: 'SETSEARCHDATE',
+    payload: bool,
+  };
+};
+
+export const setSearchPassengers = (passengers = 1) => {
+  return {
+    type: 'SETSEARCHPASSENGERS',
+    payload: passengers,
+  };
+};
+
 export const setPassengers = (passengerData) => {
   return {
     type: 'SETPASSENGERS',
     payload: passengerData,
   };
 };
+
 

@@ -1,4 +1,4 @@
-import '../../src/styles/flightDetail.css';
+import '../../src/styles/flightReservation.css';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -54,13 +54,17 @@ const FlightReservation = () => {
         </div>
       </div>
       <div className="passanger-detail">
+        <div className="header-form">
+          <h2>Passanger</h2>
+          <Button className="btn-add-person" variant="contained">
+            + Přida další osobu
+          </Button>
+        </div>
         <Box
           component="form"
           sx={{
             '& .MuiTextField-root': { m: 1, width: '26ch' },
           }}
-          noValidate
-          autoComplete="off"
           onSubmit={confirmReservation}
         >
           <div>
@@ -74,7 +78,7 @@ const FlightReservation = () => {
               className="input"
               id="sure-name"
               label="Příjmení"
-              onChange={(e) => handleChange('sureName', e.target.value)}
+              onChange={(e) => handleChange('lastName', e.target.value)}
             />
             <TextField
               className="input"
@@ -107,12 +111,10 @@ const FlightReservation = () => {
                 ) : null
               )}
             </TextField>
-            <Button className="btn-add-person" variant="contained">
-              + Přida další osobu
-            </Button>
           </div>
-
-          <button className="btn-reservation">Rezervovat</button>
+          <Button type="submit" className="btn-reservation" variant="contained">
+            Rezervovat
+          </Button>
         </Box>
       </div>
     </div>
