@@ -19,7 +19,7 @@ const PassengerInfo = () => {
             <Grid
               container
               rowSpacing={2}
-              columnSpacing={{ xs: 1, sm: 2, md: 9 }}
+              columnSpacing={{ xs: 1, sm: 2, md: 20 }}
             >
               <Grid item xs={4}>
                 <i>Jméno</i>

@@ -156,9 +156,6 @@ const SearchWindow = () => {
           id="to-input"
           name="to"
           label="Kam"
-          // {...register('to', { required: 'Zadejte kam chcete letět.' })}
-          // error={Boolean(errors.from)}
-          // helperText={errors.from?.message}
           onChange={(e) => {
             dispatch(
               setSearchTo(e.target.value !== '' ? e.target.value : false)
