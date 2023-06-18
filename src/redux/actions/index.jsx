@@ -47,12 +47,6 @@ export const setPassengers = (passengers) => {
   };
 };
 
-export const addPassenger = (passenger) => {
-  return {
-    type: 'ADDPASSENGER',
-    payload: passenger,
-  };
-};
 
 export const setMessage = (arr) => {
   return {
